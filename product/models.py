@@ -58,6 +58,7 @@ class Price(BaseModel):
     size = models.ForeignKey(Size, on_delete=models.CASCADE, related_name='prices_by_size')
     color = models.ForeignKey(Color, on_delete=models.CASCADE, related_name='prices_by_color')
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='prices')
+    product_img = models.ManyToManyField(ProductImage)
     count = models.IntegerField()
     price = models.DecimalField(max_digits=10, decimal_places=2)
 
