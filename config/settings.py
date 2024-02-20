@@ -42,6 +42,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -99,8 +100,21 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
+LOCALE_PATHS = [
+    BASE_DIR / 'locale'
+]
+LANGUAGE = (
+    ('uz', 'Uzbek'),
+    ('ru', 'Russian'),
+    ('en', 'English')
+)
 
-LANGUAGE_CODE = 'en-us'
+MAKEMESSAGES_IGNORE_PATTERNS = [
+    'venv/*',  # Ignore files/directories within venv directory
+    'requirements.txt',  # Ignore requirements.txt file
+]
+
+LANGUAGE_CODE = 'uz'
 
 TIME_ZONE = 'UTC'
 
