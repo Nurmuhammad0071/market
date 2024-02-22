@@ -5,6 +5,7 @@ from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 from unidecode import unidecode
 from django.utils.text import slugify
+from colorfield.fields import ColorField
 
 
 class BaseModel(models.Model):
@@ -46,6 +47,7 @@ class Size(BaseModel):
 class Color(BaseModel):
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='colors')
     title = models.CharField(max_length=255)
+    color = ColorField(default='#FF0000')
     slug = models.SlugField(max_length=255, unique=True)
 
     def save(self, *args, **kwargs):

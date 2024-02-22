@@ -28,3 +28,12 @@ def product_detail(request, slug):
     }
 
     return render(request, 'product_detail.html', contex)
+
+
+def search(request):
+    query = request.POST.get('query')
+    product = Product.objects.filter(title__contains=query)
+    contex = {
+        'product': product,
+    }
+    return render(request, 'product_list.html', contex)
