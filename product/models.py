@@ -59,9 +59,9 @@ class Color(BaseModel):
 
 class Product(BaseModel):
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='products')
-    title = models.CharField(max_length=255)
+    title = models.CharField(max_length=255, verbose_name=_('Title'))
     slug = models.SlugField(unique=True)  # Bu sana buyicha unique qilingan
-    text = models.TextField()
+    text = models.TextField(verbose_name=_('Description'))
     detail = models.TextField()
     discount_id = models.ForeignKey('product.Discount', on_delete=models.CASCADE, null=True, blank=True,
                                     related_name='prices_by_discount')
@@ -78,8 +78,8 @@ class Product(BaseModel):
 
 class Price(BaseModel):
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='prices')
-    size = models.ForeignKey(Size, on_delete=models.CASCADE, related_name='prices_by_size')
-    color = models.ForeignKey(Color, on_delete=models.CASCADE, related_name='prices_by_color')
+    size = models.ForeignKey(Size, on_delete=models.SET_NULL, related_name='prices_by_size', null=True, blank=True)
+    color = models.ForeignKey(Color, on_delete=models.SET_NULL, related_name='prices_by_color', null=True, blank=True)
     count = models.PositiveIntegerField()
     price = models.DecimalField(max_digits=10, decimal_places=2)
     discount_price = models.DecimalField(max_digits=10, decimal_places=2, default=0)
