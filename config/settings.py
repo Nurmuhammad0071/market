@@ -24,7 +24,7 @@ SECRET_KEY = 'django-insecure-^b0#2_knc&tf%mp1zo=am#-nht4hdh*+qp_k2fbsvi--m!jq$(
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -36,7 +36,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'product'
+    'product',
+
+]
+# Installer Party apps
+THIRD_PARTY_APPS = [
+    "modeltranslation",
+    'colorfield',
 ]
 
 MIDDLEWARE = [
@@ -135,3 +141,7 @@ MEDIA_URL = '/media/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# model translation
+MODELTRANSLATION_DEFAULT_LANGUAGE = 'uz'
+MODELTRANSLATION_LANGUAGES = ('uz', 'ru', 'en')
